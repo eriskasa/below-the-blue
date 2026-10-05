@@ -1,0 +1,19 @@
+.ambientUI { transition: opacity 400ms ease; }
+.ambientUI[data-focused="true"] { opacity: 0; pointer-events: none; }
+
+.vignette {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  /* A clear center for the real meshes, with a muted ocean wash outside. */
+  background: radial-gradient(ellipse min(320px, 48vw) min(280px, 48dvh) at center,
+    rgb(19 34 44 / 0%) 40%, rgb(19 34 44 / 30%) 100%);
+  transition: opacity 600ms ease;
+}
+.vignette[data-focused="true"] { opacity: 1; pointer-events: auto; touch-action: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ambientUI, .vignette { transition-duration: 100ms; }
+}

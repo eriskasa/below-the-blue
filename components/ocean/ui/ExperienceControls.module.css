@@ -1,0 +1,84 @@
+.control {
+  position: fixed;
+  z-index: 3;
+  color: #edf7f8;
+  font-size: 12px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.info { top: max(16px, env(safe-area-inset-top)); left: max(16px, env(safe-area-inset-left)); }
+.color { top: max(16px, env(safe-area-inset-top)); right: max(16px, env(safe-area-inset-right)); }
+.sound { bottom: max(16px, env(safe-area-inset-bottom)); right: max(16px, env(safe-area-inset-right)); }
+
+.button, .panel, .infoCard {
+  background: rgb(20 53 73 / 72%);
+  border: 1px solid rgb(225 246 250 / 23%);
+  box-shadow: 0 4px 24px rgb(3 27 46 / 8%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.button, .mute, .close, .swatch {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.button { gap: 8px; padding: 0 14px; border-radius: 24px; transition: background 180ms ease; }
+.iconButton { padding: 0; }
+.infoIcon { font-size: 21px; line-height: 1; }
+.colorPreview { width: 20px; height: 20px; border: 1px solid rgb(255 255 255 / 60%); border-radius: 50%; }
+.button:hover, .button[aria-expanded="true"] { background: rgb(35 72 92 / 86%); }
+.button:focus-visible, .mute:focus-visible, .close:focus-visible, .swatch:focus-visible, .volumeRow input:focus-visible {
+  outline: 2px solid #d8eeec;
+  outline-offset: 3px;
+}
+
+.panel { position: absolute; right: 0; padding: 12px; border-radius: 20px; }
+.colorPanel { top: calc(100% + 10px); width: 224px; }
+.label { margin: 0 0 8px; font-size: 11px; color: #d0e2e8; text-align: center; }
+.swatches { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; }
+.swatch { border: 0; border-radius: 50%; background: none; }
+.swatch span { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; color: #19374c; font-size: 16px; }
+.swatch[aria-pressed="true"] span { outline: 1px solid #ecf6f7; outline-offset: 4px; }
+.swatch:hover span { box-shadow: 0 0 0 4px rgb(255 255 255 / 12%); }
+
+.soundPanel { bottom: calc(100% + 10px); width: 252px; max-width: calc(100vw - max(16px, env(safe-area-inset-left)) - max(16px, env(safe-area-inset-right))); padding: 6px 10px; }
+.volumeRow { display: flex; align-items: center; gap: 8px; }
+.mute, .close { border: 0; border-radius: 50%; background: transparent; }
+.mute:hover, .close:hover { background: rgb(255 255 255 / 9%); }
+.volumeRow input { flex: 1; min-width: 0; width: 100%; height: 44px; margin: 0; accent-color: #bcd9df; cursor: pointer; }
+.volumeValue { min-width: 32px; font-size: 10px; font-variant-numeric: tabular-nums; text-align: right; }
+.audioStatus { margin: 0 4px 8px; font-size: 11px; line-height: 1.5; color: #d0e2e8; }
+
+.dialog {
+  inset: max(20px, env(safe-area-inset-top)) max(20px, env(safe-area-inset-right)) max(20px, env(safe-area-inset-bottom)) max(20px, env(safe-area-inset-left));
+  margin: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 24px;
+  width: min(360px, calc(100vw - max(20px, env(safe-area-inset-left)) - max(20px, env(safe-area-inset-right))));
+  max-height: calc(100dvh - max(20px, env(safe-area-inset-top)) - max(20px, env(safe-area-inset-bottom)));
+  overflow: auto;
+  color: #edf7f8;
+  background: transparent;
+  overscroll-behavior: contain;
+}
+.dialog::backdrop { background: rgb(4 24 40 / 24%); }
+.infoCard { position: relative; padding: 30px 26px 24px; border-radius: 24px; background: rgb(20 53 73 / 93%); }
+.close { position: absolute; top: 5px; right: 5px; font-size: 24px; font-weight: 300; }
+.infoCard h1 { margin: 0 24px 18px 0; font-size: 20px; font-weight: 500; letter-spacing: -.02em; }
+.infoCard p { margin: 0 0 14px; font-size: 13px; line-height: 1.7; color: #d0e2e8; }
+.instructions { margin-top: 22px; padding-top: 16px; border-top: 1px solid rgb(225 246 250 / 16%); }
+.instructions h2 { margin: 0 0 10px; font-size: 11px; font-weight: 400; color: #c0d6df; }
+.instructions p { display: flex; justify-content: space-between; gap: 12px; margin: 4px 0 0; font-size: 11px; }
+
+/* Leave the entire existing 112px joystick area free when the slider is open. */
+@media (any-pointer: coarse) { .soundPanel { bottom: 124px; } }

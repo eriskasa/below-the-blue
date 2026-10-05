@@ -1,0 +1,31 @@
+.readoutArea, .discoveryArea {
+  position: fixed;
+  z-index: 2;
+  pointer-events: none;
+  user-select: none;
+  color: #d6eef5;
+}
+
+.readoutArea {
+  left: max(16px, env(safe-area-inset-left));
+  /* Stay between Info and the joystick, above the centered discovery title. */
+  top: clamp(calc(max(16px, env(safe-area-inset-top)) + 64px), 35dvh, calc(100dvh - max(16px, env(safe-area-inset-bottom)) - 176px));
+}
+.readout { display: grid; gap: 5px; opacity: 0; transition: opacity 300ms ease; }
+.meters { font-size: 12px; font-variant-numeric: tabular-nums; letter-spacing: .04em; }
+.zone { max-width: 116px; font-size: 9px; letter-spacing: .12em; text-transform: uppercase; line-height: 1.6; }
+
+.discoveryArea {
+  inset: max(16px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(16px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+  display: grid;
+  place-items: center;
+}
+.discovery { display: grid; gap: 10px; max-width: min(260px, 70vw); text-align: center; opacity: 0; }
+.title { font-size: clamp(13px, 2.2vw, 18px); font-weight: 400; letter-spacing: .2em; line-height: 1.5; text-transform: uppercase; }
+.titleDepth { font-size: 11px; letter-spacing: .12em; font-variant-numeric: tabular-nums; }
+
+/* Open existing panels take priority on compact screens without changing them. */
+:global(.experience:has([data-depth-travel] button[aria-expanded="true"])) .readoutArea,
+:global(.experience:has([data-depth-travel] button[aria-expanded="true"])) .discoveryArea,
+:global(.experience:has([data-experience-control] button[aria-expanded="true"])) .readoutArea,
+:global(.experience:has([data-experience-control] button[aria-expanded="true"])) .discoveryArea { visibility: hidden; }

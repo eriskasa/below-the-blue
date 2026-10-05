@@ -1,0 +1,35 @@
+.layer { position: fixed; inset: 0; z-index: 4; display: grid; place-items: center; pointer-events: none; color: #e0f0f2; }
+.frame {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  width: min(560px, calc(100vw - max(16px, env(safe-area-inset-left)) - max(16px, env(safe-area-inset-right))));
+  height: min(480px, calc(100dvh - max(16px, env(safe-area-inset-top)) - max(16px, env(safe-area-inset-bottom))));
+  border: 1px solid rgb(206 235 237 / 18%);
+  border-radius: 28px;
+  /* PuzzleSurface draws solid #0d2534 behind the real Three.js puzzle fish. */
+  background: transparent;
+  box-shadow: 0 12px 64px rgb(5 23 37 / 12%);
+  animation: appear 600ms ease both;
+}
+.header { flex: 0 0 104px; min-height: 0; overflow: auto; padding: 16px 44px 8px; text-align: center; pointer-events: auto; }
+.header h2 { margin: 0 0 8px; font-size: 18px; font-weight: 400; letter-spacing: .03em; line-height: 1.4; }
+.instruction { color: #cbe2e8; font-size: 13px; line-height: 1.6; }
+.creatures { flex: 1; min-height: 0; margin: 0 20px; }
+.footer { position: relative; z-index: 2; display: flex; justify-content: center; align-items: center; flex: 0 0 104px; min-height: 0; padding: 8px 20px 16px; pointer-events: auto; }
+.close { position: absolute; z-index: 3; top: 5px; right: 5px; width: 44px; height: 44px; border: 0; border-radius: 50%; background: transparent; color: #e0f0f2; font-size: 27px; font-weight: 300; cursor: pointer; pointer-events: auto; touch-action: manipulation; }
+.close:hover { background: rgb(208 240 235 / 12%); }
+.close:focus-visible { outline: 2px solid #bddfdc; outline-offset: -3px; }
+.targets { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+.layer[data-phase="leaving"] .frame { animation: disappear 600ms ease both; }
+@keyframes appear { from { opacity: 0; } to { opacity: 1; } }
+@keyframes disappear { from { opacity: 1; } to { opacity: 0; } }
+@media (max-height: 480px) {
+  .header { flex-basis: 64px; padding-top: 12px; }
+  .header h2 { margin-bottom: 3px; font-size: 16px; }
+  .instruction { font-size: 12px; }
+  .footer { flex-basis: 64px; padding-block: 4px 8px; }
+}
+@media (max-width: 400px) { .header h2 { font-size: 16px; } .instruction { font-size: 12px; } }
+@media (prefers-reduced-motion: reduce) { .frame, .layer[data-phase="leaving"] .frame { animation: none; } }

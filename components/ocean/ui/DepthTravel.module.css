@@ -1,0 +1,74 @@
+.control {
+  position: fixed;
+  z-index: 4;
+  top: max(16px, env(safe-area-inset-top));
+  left: 50%;
+  transform: translateX(-50%);
+  color: #edf7f8;
+  font-size: 12px;
+}
+.trigger, .panel {
+  background: rgb(20 53 73 / 88%);
+  border: 1px solid rgb(225 246 250 / 23%);
+  box-shadow: 0 4px 24px rgb(3 27 46 / 8%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+.trigger {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  max-width: calc(100vw - 160px - env(safe-area-inset-left) - env(safe-area-inset-right));
+  padding: 0 12px;
+  border-radius: 24px;
+  font: inherit;
+  font-size: 10px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: inherit;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.panel {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 228px;
+  max-width: calc(100vw - 48px - env(safe-area-inset-left) - env(safe-area-inset-right));
+  max-height: calc(100dvh - max(16px, env(safe-area-inset-top)) - max(16px, env(safe-area-inset-bottom)) - 190px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 8px;
+  border-radius: 18px;
+}
+.panel p { margin: 8px 10px; color: #c0d6df; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; }
+.panel button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 44px;
+  gap: 10px;
+  padding: 8px 10px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.panel button[aria-current], .panel button:enabled:hover { background: rgb(225 246 250 / 9%); }
+.panel button:disabled { color: #aebfc9; cursor: default; }
+.status { font-size: 10px; color: #b7cdd6; }
+.trigger:focus-visible, .panel button:focus-visible { outline: 2px solid #d8eeec; outline-offset: -2px; }
+.fade { position: fixed; inset: 0; z-index: 30; background: #081d30; pointer-events: auto; }
+.fade[data-phase="outgoing"] { animation: cover var(--travel-fade) ease-in-out both; }
+.fade[data-phase="incoming"] { animation: uncover var(--travel-fade) ease-in-out both; }
+@keyframes cover { from { opacity: 0; } to { opacity: 1; } }
+@keyframes uncover { from { opacity: 1; } to { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .fade { animation-duration: 1ms; } }

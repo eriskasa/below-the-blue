@@ -1,0 +1,35 @@
+.invitation {
+  width: min(230px, 66vw);
+  padding: 10px 14px;
+  border: 1px solid rgb(225 246 250 / 20%);
+  border-radius: 16px;
+  background: rgb(15 43 62 / 82%);
+  color: #e0f0f2;
+  font-size: 12px;
+  text-align: center;
+  pointer-events: auto;
+}
+.invitation h2 { margin: 0 0 6px; font-size: 13px; font-weight: 400; line-height: 1.5; }
+.invitation button, .primary, .hint button {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 12px;
+  color: #e0f0f2;
+  font: inherit;
+  font-size: 13px;
+  background: rgb(208 240 235 / 10%);
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.primary { background: rgb(208 240 235 / 18%); padding-inline: 24px; }
+.primary:disabled { opacity: .45; cursor: default; }
+.invitation button:hover, .primary:not(:disabled):hover, .hint button:hover { background: rgb(208 240 235 / 22%); }
+.invitation button:focus-visible, .primary:focus-visible, .hint button:focus-visible { outline: 2px solid #bddfdc; outline-offset: 2px; }
+.shortcut { padding-left: 12px; font-size: 9px; opacity: .65; }
+.hint { position: relative; }
+.hintCard { position: absolute; left: 50%; bottom: calc(100% + 8px); transform: translateX(-50%); width: min(280px, 75vw); padding: 16px 44px 16px 16px; border: 1px solid rgb(225 246 250 / 23%); border-radius: 16px; background: rgb(15 43 62 / 96%); }
+.hintCard p { margin: 0; font-size: 12px; line-height: 1.6; }
+.hintCard button { position: absolute; top: 0; right: 0; padding: 0; background: transparent; font-size: 21px; }
+@media (any-pointer: coarse) { .shortcut { display: none; } }

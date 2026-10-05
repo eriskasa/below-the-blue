@@ -1,0 +1,48 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  padding: max(16px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(16px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+  background: rgb(5 30 48 / 18%);
+  overscroll-behavior: contain;
+  animation: arrive 280ms ease-out both;
+}
+
+.card {
+  width: min(100%, 400px);
+  max-height: calc(100dvh - max(16px, env(safe-area-inset-top)) - max(16px, env(safe-area-inset-bottom)));
+  overflow-y: auto;
+  padding: clamp(24px, 5vw, 32px);
+  border: 1px solid rgb(210 240 244 / 25%);
+  border-radius: 24px;
+  background: rgb(16 48 67 / 92%);
+  box-shadow: 0 12px 48px rgb(3 24 40 / 16%);
+  color: #edf7f8;
+  text-align: center;
+  animation: settle 280ms ease-out both;
+}
+
+.card h1 { margin: 0 0 16px; font-size: clamp(20px, 5vw, 24px); font-weight: 500; letter-spacing: .1em; line-height: 1.35; }
+.description { margin: 0; color: #d0e2e8; font-size: 14px; line-height: 1.7; }
+.controls { margin: 24px 0; padding-top: 18px; border-top: 1px solid rgb(210 240 244 / 16%); font-size: 12px; line-height: 1.6; color: #c5dce4; }
+.controls p { margin: 0 0 8px; }
+.controls p:last-child { margin-bottom: 0; }
+.controls span { color: #edf7f8; }
+.touchHint { display: none; }
+.start { width: 100%; min-height: 50px; padding: 12px 20px; border: 1px solid rgb(235 255 255 / 40%); border-radius: 16px; background: #c0e5e8; color: #123747; font: inherit; font-size: 15px; font-weight: 600; cursor: pointer; touch-action: manipulation; transition: background 160ms ease; }
+.start:hover { background: #d6f1f2; }
+.start:focus-visible { outline: 2px solid #efffff; outline-offset: 4px; }
+.start[aria-disabled="true"] { cursor: default; }
+.footer { margin: 16px 0 0; color: #b7d1da; font-size: 11px; line-height: 1.5; }
+.overlay[data-leaving="true"] { animation: depart 240ms ease-in both; }
+
+@keyframes arrive { from { opacity: .01; } to { opacity: 1; } }
+@keyframes settle { from { transform: translateY(5px) scale(.98); } to { transform: none; } }
+@keyframes depart { from { opacity: 1; } to { opacity: 0; } }
+@media (any-pointer: coarse) { .touchHint { display: block; } }
+@media (prefers-reduced-motion: reduce) {
+  .overlay, .overlay[data-leaving="true"], .card { animation-duration: 1ms; }
+  .start { transition: none; }
+}

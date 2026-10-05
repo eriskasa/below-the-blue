@@ -1,0 +1,19 @@
+.fishTarget {
+  position: relative;
+  display: block;
+  width: 64px;
+  height: 56px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  background: transparent;
+  color: #deefed;
+  pointer-events: auto;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+.fishTarget span { position: absolute; top: 100%; left: 0; width: 100%; font-size: 10px; text-align: center; opacity: .6; }
+.fishTarget:disabled { cursor: default; }
+.fishTarget:focus-visible { outline: 2px solid #cdece6; outline-offset: 3px; }
+.fishTarget:not(:disabled):hover { border-color: rgb(220 250 240 / 40%); }
